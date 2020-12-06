@@ -4,7 +4,6 @@ from sqlalchemy.orm import relationship, backref
 
 from datebase import mixins
 
-
 db = SQLAlchemy()
 
 

@@ -71,13 +71,45 @@ class DefaultApiView(DefaultView):
 
         return make_response(
             jsonify(id=obj.id),
-            200
+            HTTPStatus.NO_CONTENT
         )
 
 
-class UsersView(DefaultListView):
+class UserListView(DefaultListView):
     model = models.User
 
 
-class UserView(DefaultApiView):
+class UserApiView(DefaultApiView):
     model = models.User
+
+
+class PlayerListView(DefaultListView):
+    model = models.Player
+
+
+class PlayerApiView(DefaultApiView):
+    model = models.Player
+
+
+class SessionListView(DefaultListView):
+    model = models.Session
+
+
+class SessionApiView(DefaultApiView):
+    model = models.Session
+
+
+class PhraseListView(DefaultListView):
+    model = models.Phrase
+
+
+class PhraseApiView(DefaultApiView):
+    model = models.Phrase
+
+
+class ContentListView(DefaultListView):
+    model = models.Content
+
+
+class ContentApiView(DefaultApiView):
+    model = models.Content
