@@ -1,6 +1,6 @@
 from flask import Blueprint
 
-import views
+from . import views
 
 api_routes = (
     ('users', views.UserListView, views.UserApiView),
@@ -11,12 +11,13 @@ api_routes = (
 )
 
 
-def add_api_routes(app):
-    app.bp = Blueprint('api', __name__)
+def get_bp(app):
+    bp = Blueprint('api', __name__)
 
     for name, list_view, api_view in api_routes:
-        list_route = f'/api/{name}'
-        app.api.add_resource(list_view, list_route)
-        app.api.add_resource(api_view, f'{list_route}/<obj_id>')
+        app.api.add_resource(list_view, f'/{name}')
+        app.api.add_resource(api_view, f'/{name}/<obj_id>')
 
-    app.register_blueprint(app.bp)
+    app.register_blueprint(bp)
+
+    return bp
