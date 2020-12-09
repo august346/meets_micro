@@ -1,16 +1,16 @@
 from flask import Flask
-from flask_restful import Api
 
 import settings
 from datebase.models import *
-from rest.bp import get_bp
+from meet import meet
+from rest import rest
 
 
 def create_app():
     app = Flask(__name__)
     app.db = _init_db(app)
-    app.api = _init_api(app)
-    app.api.rest = get_bp(app)
+    app.rest_api = rest.init_api(app)
+    app.meet_api = meet.init_meet_bp(app)
     return app
 
 
@@ -21,7 +21,3 @@ def _init_db(app):
     with app.app_context():
         db.create_all()
     return db
-
-
-def _init_api(app):
-    return Api(app, prefix='/api')

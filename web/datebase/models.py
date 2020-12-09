@@ -20,6 +20,8 @@ class User(db.Model, mixins.DictSerializableMixin):
 
 
 class Player(db.Model, mixins.DictSerializableMixin):
+    serializable_fields = ('id', 'name', 'about')
+
     id = Column(Integer, primary_key=True)
     name = Column(String(80), nullable=False)
     about = Column(Text)
@@ -34,6 +36,8 @@ class Player(db.Model, mixins.DictSerializableMixin):
 
 
 class Content(db.Model, mixins.DictSerializableMixin):
+    serializable_fields = ('id', 'name', 'description', 'player_id')
+
     id = Column(Integer, primary_key=True)
     name = Column(String(80), nullable=False)
     description = Column(Text)
@@ -45,6 +49,8 @@ class Content(db.Model, mixins.DictSerializableMixin):
 
 
 class Session(db.Model, mixins.DictSerializableMixin):
+    serializable_fields = ('id', 'player_id')
+
     id = Column(Integer, primary_key=True)
 
     # relations
@@ -55,6 +61,8 @@ class Session(db.Model, mixins.DictSerializableMixin):
 
 
 class Phrase(db.Model, mixins.DictSerializableMixin):
+    serializable_fields = ('id', 'content_id', 'session_id', 'question_id')
+
     id = Column(Integer, primary_key=True)
 
     # relations

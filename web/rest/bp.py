@@ -11,12 +11,12 @@ api_routes = (
 )
 
 
-def get_bp(app):
+def get_bp(app, api):
     bp = Blueprint('api', __name__)
 
     for name, list_view, api_view in api_routes:
-        app.api.add_resource(list_view, f'/{name}')
-        app.api.add_resource(api_view, f'/{name}/<obj_id>')
+        api.add_resource(list_view, f'/{name}')
+        api.add_resource(api_view, f'/{name}/<obj_id>')
 
     app.register_blueprint(bp)
 

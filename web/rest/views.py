@@ -11,7 +11,7 @@ def api_view_function(f):
     def wrapper(view, obj_id):
         if obj := view.model.query.get(obj_id):
             return f(view, obj)
-        abort(404)
+        abort(HTTPStatus.NOT_FOUND)
 
     return wrapper
 
